@@ -17,9 +17,6 @@ const CompanyCreate = () => {
 
   const registerNewCompany = async () => {
     try {
-      const token = getCookie("token");
-      console.log("JWT token from cookie:", token); // <-- This logs your token
-
       const res = await axios.post(
         `${COMPANY_API_ENDPOINT}/register`,
         {
