@@ -87,8 +87,33 @@ const Description = () => {
     <div>
       <Navbar />
       {loading || !singleJob ? (
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-blue-600" />
+        <div className="max-w-7xl mx-auto my-10 space-y-6 animate-pulse">
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="flex items-center gap-2 my-2">
+                <div className="h-12 w-12 rounded-full bg-gray-300" />
+                <div className="h-4 w-32 bg-gray-300 rounded" />
+              </div>
+              <div className="h-6 w-64 bg-gray-300 rounded" />
+              <div className="flex gap-2 mt-4">
+                <div className="h-5 w-20 bg-gray-300 rounded" />
+                <div className="h-5 w-20 bg-gray-300 rounded" />
+                <div className="h-5 w-20 bg-gray-300 rounded" />
+                <div className="h-5 w-20 bg-gray-300 rounded" />
+              </div>
+            </div>
+            <div>
+              <div className="h-10 w-32 bg-gray-300 rounded-lg" />
+            </div>
+          </div>
+
+          <div className="h-24 bg-gray-300 rounded" />
+
+          <div className="space-y-4">
+            {[...Array(7)].map((_, i) => (
+              <div key={i} className="h-5 w-[300px] bg-gray-300 rounded" />
+            ))}
+          </div>
         </div>
       ) : (
         <div className="max-w-7xl mx-auto my-10 ">
