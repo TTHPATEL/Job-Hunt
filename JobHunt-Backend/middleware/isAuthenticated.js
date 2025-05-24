@@ -3,31 +3,31 @@ import jwt from "jsonwebtoken";
 const authenticateToken = (req, res, next) => {
   try {
     const token = req.cookies.token;
-    if(!token){
+    console.log("Token received in cookie:", token); // << Add this line to debug
+    if (!token) {
       return res.status(401).json({
         message: "No token Provided",
-        status: false 
-      })
+        status: false,
+      });
     }
 
-    const decoded = jwt.verify(token,process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    if(!decoded){
+    if (!decoded) {
       return res.status(401).json({
         message: "Invalid token",
-        status: false 
-      })
+        status: false,
+      });
     }
 
     req.id = decoded.userId;
     next();
-  } 
-  catch (error) {
+  } catch (error) {
     return res.this.status(401).json({
       message: "Invalid token",
-      status: false 
-    })
+      status: false,
+    });
   }
-}
+};
 
 export default authenticateToken;
