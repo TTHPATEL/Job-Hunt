@@ -53,8 +53,11 @@ const Description = () => {
   useEffect(() => {
     const fetchSingleJob = async () => {
       try {
-        const res = await axios.get(`${JOB_API_ENDPOINT}/get/${jobId}`, {
-          withCredentials: true,
+        const endpoint = user
+          ? `${JOB_API_ENDPOINT}/get/${jobId}`
+          : `${JOB_API_ENDPOINT}/public/get/${jobId}`;
+        const res = await axios.get(endpoint, {
+          withCredentials: user ? true : false,
         });
         if (res.data.status) {
           dispatch(setSingleJob(res.data.job));

@@ -18,9 +18,13 @@ const Navbar = () => {
 
   const logoutHandler = async () => {
     try {
-      const response = await axios.post(`${USER_API_ENDPOINT}/logout`, {
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        `${USER_API_ENDPOINT}/logout`,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
       if (response.data.success) {
         dispatch(setUser(null));
         navigate("/");

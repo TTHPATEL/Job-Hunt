@@ -13,6 +13,7 @@ const router = express.Router();
 
 router.route("/post").post(authenticateToken, postJob);
 router.route("/get/:id").get(authenticateToken, getJobById);
+router.route("/public/get/:id").get(getJobById);
 router.route("/getadminjobs").get(authenticateToken, getAdminJob);
 router.route("/get").get(authenticateToken, getAllJobs);
 router.route("/public/get").get(getAllJobs);

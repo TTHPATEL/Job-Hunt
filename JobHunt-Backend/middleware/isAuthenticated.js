@@ -6,7 +6,7 @@ const authenticateToken = (req, res, next) => {
     console.log("Token received in cookie:", token); // << Add this line to debug
     if (!token) {
       return res.status(401).json({
-        message: "No token Provided",
+        message: "Login First (No token Provided)",
         status: false,
       });
     }
