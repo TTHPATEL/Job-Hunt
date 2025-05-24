@@ -14,8 +14,17 @@ const CompanyCreate = () => {
   const navigate = useNavigate();
   const [companyName, setCompanyName] = useState("");
   const dispatch = useDispatch();
+  const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  };
+
   const registerNewCompany = async () => {
     try {
+      const token = getCookie("token");
+      console.log("JWT token from cookie:", token); // <-- This logs your token
+
       const res = await axios.post(
         `${COMPANY_API_ENDPOINT}/register`,
         {
