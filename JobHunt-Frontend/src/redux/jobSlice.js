@@ -37,6 +37,9 @@ const jobSlice = createSlice({
     setJobById(state, action) {
       state.jobById = action.payload;
     },
+    clearSingleJob: (state) => {
+      state.singleJob = null;
+    },
   },
 });
 
@@ -48,6 +51,7 @@ export const {
   searchJobByText,
   setAllAppliedJobs,
   setJobById,
+  clearSingleJob,
 } = jobSlice.actions;
 
 export default jobSlice.reducer;

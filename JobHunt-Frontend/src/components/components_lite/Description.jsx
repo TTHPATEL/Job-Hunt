@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { useParams } from "react-router-dom";
-import { setSingleJob } from "@/redux/jobSlice";
+import { setSingleJob, clearSingleJob } from "@/redux/jobSlice";
 import { JOB_API_ENDPOINT } from "@/utils/data";
 import axios from "axios";
 import { useEffect } from "react";
@@ -53,6 +53,9 @@ const Description = () => {
   useEffect(() => {
     const fetchSingleJob = async () => {
       try {
+        dispatch(clearSingleJob());
+        setLoading(true);
+
         const endpoint = user
           ? `${JOB_API_ENDPOINT}/get/${jobId}`
           : `${JOB_API_ENDPOINT}/public/get/${jobId}`;
@@ -80,9 +83,14 @@ const Description = () => {
   }, [jobId, dispatch, user?._id]);
   // console.log("single jobs", singleJob);
 
-  if (!singleJob) {
-    return <div>Loading...</div>;
+  if (loading || !singleJob) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-blue-600" />
+      </div>
+    );
   }
+
   return (
     <div>
       <Navbar />
