@@ -149,9 +149,9 @@ export const login = async (req, res) => {
       .status(200)
       .cookie("token", token, {
         maxAge: 1 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
-        sameSite: "None",
-        secure: true,
+        httpOnly: true, // 🔐 Prevents JavaScript from accessing the cookie (protects against XSS attacks)
+        sameSite: "None", // 🌐 Allows cross-site cookie usage (required if frontend and backend are on different domains)
+        secure: true, // ✅ Ensures the cookie is only sent over HTTPS (required when using SameSite: "None")
       })
       .json({
         message: `Welcome back ${user.fullname}`,
