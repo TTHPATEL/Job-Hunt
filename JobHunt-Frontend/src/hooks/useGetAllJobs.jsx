@@ -9,18 +9,20 @@ const useGetAllJobs = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const searchedQuery = useSelector((store) => store.jobs.searchedQuery);
+  const { user } = useSelector((store) => store.auth);
 
   useEffect(() => {
     const fetchAllJobs = async () => {
       setLoading(true);
       setError(null);
       try {
-        const res = await axios.get(
-          `${JOB_API_ENDPOINT}/get?keyword=${searchedQuery}`,
-          {
-            withCredentials: true,
-          }
-        );
+        const endpoint = user
+          ? `${JOB_API_ENDPOINT}/get?keyword=${searchedQuery}`
+          : `${JOB_API_ENDPOINT}/public/get?keyword=${searchedQuery}`;
+
+        const res = await axios.get(endpoint, {
+          withCredentials: user ? true : false,
+        });
         // console.log("API Response: ", res.data);
         if (res.data.status) {
           dispatch(setAllJobs(res.data.jobs));

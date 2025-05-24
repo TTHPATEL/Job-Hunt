@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { useDispatch } from "react-redux";
 import { setSearchedQuery } from "@/redux/jobSlice";
-import useGetAllJobs from "@/hooks/useGetAllJobs";
 
 const filterData = [
   {
