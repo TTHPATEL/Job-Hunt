@@ -45,8 +45,7 @@ const startServer = async () => {
     });
   } catch (error) {
     console.error("❌ Failed to connect to MongoDB:", error.message);
-    process.exit(1); // Optional: Prevent server start on DB failure
+    process.exit(1); // Optionals: Prevent server start on DB failure
   }
 };
-
 startServer();
