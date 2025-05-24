@@ -10,6 +10,7 @@ import axios from "axios";
 import { USER_API_ENDPOINT } from "@/utils/data.js";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading, setUser } from "@/redux/authSlice";
+import { ArrowLeft, Loader2 } from "lucide-react";
 
 const Login = () => {
   const [input, setInput] = useState({
@@ -46,7 +47,6 @@ const Login = () => {
       if (res.data.success) {
         dispatch(setUser(res.data.user));
         navigate("/");
-
         toast.success(res.data.message);
       }
     } catch (error) {
@@ -131,11 +131,9 @@ const Login = () => {
           </div>
 
           {loading ? (
-            <div className="flex items-center justify-center my-10">
-              <div className="spinner-border text-blue-600" role="status">
-                <span className="sr-only">Loading...</span>
-              </div>
-            </div>
+            <Button className="block w-3/4  my-3  text-white bg-blue-600 hover:bg-blue-800/90 rounded-md flex items-center justify-center max-w-7xl mx-auto">
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
+            </Button>
           ) : (
             <Button
               type="submit"
